@@ -1,0 +1,13 @@
+$laptop: 1600px;
+
+@mixin laptop-above {
+  @media (width >= $laptop) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (width < $laptop) {
+    @content;
+  }
+}

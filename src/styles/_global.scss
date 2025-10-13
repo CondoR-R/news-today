@@ -1,0 +1,62 @@
+@use '@/styles/helpers' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  color: var(--color-primary);
+}
+
+#root {
+  width: 1512px;
+  margin: 0 auto;
+
+  @include laptop {
+    width: 1128px;
+  }
+}
+
+main {
+  padding-block: var(--padding-y);
+}
+
+// сбрасываем стили ссылки
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  background-color: transparent;
+  border: 2px solid var(--color-secondary);
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: all .2s;
+
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-secondary), #000 10%);
+    border-color: color-mix(in srgb, var(--color-secondary), #000 10%);
+    color: var(--color-light);
+  }
+
+  &:active {
+    translate: 0 5px;
+  }
+
+  &.active {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    pointer-events: none;
+  }
+}
+
+
+

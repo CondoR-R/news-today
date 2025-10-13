@@ -1,0 +1,15 @@
+@use '@/styles/helpers' as *;
+
+:root {
+  --color-secondary: #FC4308;
+  --color-primary: #333;
+  --color-light: #eee;
+
+  --border: 1px solid var(--color-light);
+
+  --padding-y: 45px;
+
+  @include laptop {
+    --padding-y: 30px;
+  }
+}
