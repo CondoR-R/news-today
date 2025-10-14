@@ -1,16 +1,10 @@
-import React, {useReducer} from 'react';
-import {
-  HomeContextDispatch,
-  HomeContextState,
-  initialState,
-  reducer
-} from "@/state/home-reducer.ts";
+import React from 'react';
+import {HomeContextDispatch, HomeContextState,} from "@/state/home-reducer.ts";
 import {Categories} from '@/components';
-import {useTitle} from "@/hooks";
+import {useHomeReducer, useTitle} from "@/hooks";
 
 export const HomePage: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
+  const [state, dispatch] = useHomeReducer();
   useTitle("Home");
 
   return (

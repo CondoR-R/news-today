@@ -1,5 +1,9 @@
 import {createContext, type Dispatch} from "react";
-import type {HomeActionT, HomeStateT} from "@/type/home-state.type.ts";
+import type {
+  CategoryT,
+  HomeActionT,
+  HomeStateT
+} from "@/type/home-state.type.ts";
 
 export const initialState: HomeStateT = {
   activeCategory: 'all',
@@ -9,10 +13,10 @@ export const reducer =
   (state: HomeStateT, action: HomeActionT) => {
     switch (action.type) {
       case 'setActiveCategory':
-        return ({
+        return ((action.payload as CategoryT) ? {
           ...state,
           activeCategory: action.payload,
-        });
+        } : state);
     }
     throw Error('Unknown action: ' + action.type);
   }

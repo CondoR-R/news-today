@@ -10,15 +10,14 @@ interface Props {
 }
 
 export const Categories: React.FC<Props> = ({className}) => {
-  const state = useHomeState();
+  const {activeCategory} = useHomeState();
   const dispatch = useHomeDispatch();
 
-  const onClickButton = (category: CategoryT) => () => {
-    if (dispatch === null) return;
-
-    dispatch({type: 'setActiveCategory', payload: category});
-
-  }
+  const onClickButton =
+    (category: CategoryT) => () => {
+      if (dispatch === null) return;
+      dispatch({type: 'setActiveCategory', payload: category});
+    }
 
   return (
     <nav className={cn(style.nav, className)}>
@@ -32,7 +31,7 @@ export const Categories: React.FC<Props> = ({className}) => {
               type={'button'}
               className={cn(
                 style.categoriesButton,
-                state.activeCategory === category && 'active'
+                activeCategory === category && 'active'
               )}
               onClick={onClickButton(category)}
             >{category}</button>
