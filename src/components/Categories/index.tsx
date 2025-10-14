@@ -1,21 +1,23 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import cn from 'classnames';
-
 import style from './Categories.module.scss';
 import {categories} from "@/API/categories.ts";
-import {HomeContextDispatch, HomeContextState} from "@/state/home-reducer.ts";
 import type {CategoryT} from "@/type/home-state.type.ts";
+import {useHomeDispatch, useHomeState} from "@/hooks";
 
 interface Props {
   className?: string;
 }
 
 export const Categories: React.FC<Props> = ({className}) => {
-  const state = useContext(HomeContextState);
-  const dispatch = useContext(HomeContextDispatch);
+  const state = useHomeState();
+  const dispatch = useHomeDispatch();
 
   const onClickButton = (category: CategoryT) => () => {
+    if (dispatch === null) return;
+
     dispatch({type: 'setActiveCategory', payload: category});
+
   }
 
   return (
