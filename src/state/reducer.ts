@@ -1,11 +1,18 @@
 import {createContext, type Dispatch} from "react";
-import type {ActionT, CategoryT, DataT, StateT} from "@/type/state.type.ts";
+import type {
+  ActionT,
+  CategoryT,
+  DataT,
+  SearchT,
+  StateT
+} from "@/type/state.type.ts";
 
 export const initialState: StateT = {
   activeCategory: 'general',
   isLoading: false,
   data: null,
   error: null,
+  search: '',
 };
 
 export const reducer =
@@ -36,6 +43,12 @@ export const reducer =
           data: action.payload,
           isLoading: false,
           error: null,
+        } : state);
+      }
+      case 'setSearch': {
+        return ((action.payload as SearchT) ? {
+          ...state,
+          search: action.payload,
         } : state);
       }
     }

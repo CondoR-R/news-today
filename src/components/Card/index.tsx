@@ -13,6 +13,9 @@ interface Props {
 export const Card: React.FC<Props> = ({className, card}) => {
   if (!card.description && !card.content) return;
 
+  const date = new Date(card.publishedAt);
+  const renderDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
   return (
     <div className={style.card}>
       <Link
@@ -36,7 +39,7 @@ export const Card: React.FC<Props> = ({className, card}) => {
         <div className={style.bottomLeft}>
           {card.author &&
             <span className={style.author}>{card.author}</span>}
-          <span className={style.date}>{card.publishedAt}</span>
+          <span className={style.date}>{renderDate}</span>
         </div>
         <div className={style.bottomRight}>
           <span>Source:</span>

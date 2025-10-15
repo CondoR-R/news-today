@@ -28,15 +28,18 @@ export type ErrorT = string | null;
 
 export type IsLoadingT = boolean;
 
+export type SearchT = string;
+
 export type StateT = {
   activeCategory: CategoryT,
   isLoading: IsLoadingT,
   data: (DataT | undefined),
   error: ErrorT,
+  search: SearchT
 };
 
 
 export type ActionT = {
-  type: 'setActiveCategory' | 'setIsLoading' | 'setError' | 'setData';
-  payload: CategoryT | DataT | ErrorT | IsLoadingT | null;
+  type: 'setActiveCategory' | 'setIsLoading' | 'setError' | 'setData' | 'setSearch';
+  payload: CategoryT | DataT | ErrorT | IsLoadingT | SearchT | null;
 }
