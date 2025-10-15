@@ -1,14 +1,18 @@
 import React from 'react';
 import cn from 'classnames';
-
 import style from './Card.module.scss';
 import {Link} from "react-router";
+import type {ArticlesT} from "@/type/state.type.ts";
+import {cutText} from "@/functions";
 
 interface Props {
   className?: string;
+  card: ArticlesT;
 }
 
-export const Card: React.FC<Props> = ({className}) => {
+export const Card: React.FC<Props> = ({className, card}) => {
+  if (!card.description && !card.content) return;
+
   return (
     <div className={style.card}>
       <Link
@@ -21,26 +25,27 @@ export const Card: React.FC<Props> = ({className}) => {
           className={style.image}
           width={340}
           height={190}
-          src={'https://www.nj.com/resizer/v2/TLUFU3C4UJBRLB42JIZXRJM4LE.jpeg?auth=2aaaede8289d723aa433a1063eef632afab0e7ab7cacdd05981590ac51bc2520&width=1280&smart=true&quality=90'}
+          src={card.urlToImage}
           alt={''}
           loading="lazy"
         />
-        <h2 className={style.title}>Legendary Jersey Shore nightclub announces closure, final days of operation - NJ.com</h2>
-        <p className={style.description}>The popular Jersey Shore bar will be demolished for a waterfront redevelopment project including a hotel, residential buildings and retail space.</p>
+        <h2 className={style.title}>{cutText(card.title, 25)}</h2>
+        <p className={style.description}>{cutText(card?.description ? card.description : card.content, 80)}</p>
       </Link>
       <div className={style.bottom}>
         <div className={style.bottomLeft}>
-          <span className={style.author}>N.J. News Report</span>
-          <span className={style.date}>12.10.2025</span>
+          {card.author &&
+            <span className={style.author}>{card.author}</span>}
+          <span className={style.date}>{card.publishedAt}</span>
         </div>
         <div className={style.bottomRight}>
           <span>Source:</span>
           <a
             className={style.source}
-            href={'https://www.nj.com/monmouth/2025/10/legendary-jersey-shore-nightclub-announces-closure-final-days-of-operation.html'}
+            href={card.url}
             target="_blank"
           >
-            nj.com
+            {card.source.name}
           </a>
         </div>
       </div>
@@ -48,3 +53,7 @@ export const Card: React.FC<Props> = ({className}) => {
     </div>
   )
 }
+
+// 80
+
+// 30

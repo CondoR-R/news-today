@@ -14,7 +14,8 @@ export const useFetchData = () => {
 
     const fetchUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${
       APIKey
-    }&category=${state.activeCategory === 'top' ? '' : state.activeCategory}`;
+    }&category=${
+      state.activeCategory}`;
 
     try {
       (async () => {
