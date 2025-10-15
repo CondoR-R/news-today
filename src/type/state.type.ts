@@ -8,16 +8,18 @@ export type CategoryT =
   'sports' |
   'technology';
 
-export type data = any;
+export type DataT =
+  { status: 'ok', totalResults: number, articles: any[] }
+  | {};
 
 export type StateT = {
   activeCategory: CategoryT,
   isLoading: boolean,
-  news: (data | undefined),
-  error: null,
+  data: (DataT | undefined),
+  error: string | null,
 };
 
 export type ActionT = {
-  type: 'setActiveCategory';
-  payload: CategoryT;
+  type: 'setActiveCategory' | 'setIsLoading' | 'setError' | 'setData';
+  payload: CategoryT | DataT | Error;
 }
