@@ -37,8 +37,6 @@ export const Card: React.FC<Props> = ({className, card}) => {
       </Link>
       <div className={style.bottom}>
         <div className={style.bottomLeft}>
-          {card.author &&
-            <span className={style.author}>{card.author}</span>}
           <span className={style.date}>{renderDate}</span>
         </div>
         <div className={style.bottomRight}>

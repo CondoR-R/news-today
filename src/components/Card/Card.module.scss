@@ -3,6 +3,9 @@
   border-radius: var(--border-radius);
   box-shadow: 0px 0px 10px -5px var(--color-primary);
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
 
   .link {
@@ -44,7 +47,6 @@
       flex-direction: column;
 
       .date {
-        font-size: 12px;
         color: var(--color-gray);
       }
     }

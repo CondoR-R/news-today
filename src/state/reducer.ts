@@ -1,11 +1,5 @@
 import {createContext, type Dispatch} from "react";
-import type {
-  ActionT,
-  CategoryT,
-  DataT,
-  SearchT,
-  StateT
-} from "@/type/state.type.ts";
+import type {ActionT, CategoryT, DataT, StateT} from "@/type/state.type.ts";
 
 export const initialState: StateT = {
   activeCategory: 'general',
@@ -18,26 +12,26 @@ export const initialState: StateT = {
 export const reducer =
   (state: StateT, action: ActionT) => {
     switch (action.type) {
-      case 'setActiveCategory': {
+      case 'SET_ACTIVE_CATEGORY': {
         return ((action.payload as CategoryT) ? {
           ...state,
           activeCategory: action.payload,
         } : state)
       }
-      case 'setIsLoading': {
+      case 'SET_IS_LOADING': {
         return ((action.payload as boolean) ? {
           ...state,
           isLoading: true
         } : state);
       }
-      case 'setError': {
+      case 'SET_ERROR': {
         return ((action.payload as string) ? {
           ...state,
           error: action.payload,
           isLoading: false
         } : state);
       }
-      case 'setData': {
+      case 'SET_DATA': {
         return ((action.payload as DataT) ? {
           ...state,
           data: action.payload,
@@ -45,11 +39,19 @@ export const reducer =
           error: null,
         } : state);
       }
-      case 'setSearch': {
-        return ((action.payload as SearchT) ? {
+      case 'SET_SEARCH': {
+        if (action.payload === '') {
+          return {
+            ...state,
+            search: action.payload,
+            activeCategory: 'general',
+          }
+        }
+        return {
           ...state,
           search: action.payload,
-        } : state);
+          activeCategory: '',
+        }
       }
     }
     throw Error('Unknown action: ' + action.type);

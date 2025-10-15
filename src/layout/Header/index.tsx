@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import cn from 'classnames';
 import style from './Header.module.scss';
 import {Link} from "react-router";
 import {IoSearchSharp} from "react-icons/io5";
 import {Categories} from '@/components';
+import {useContextDispatch} from "@/hooks";
 
 interface Props {
   className?: string;
@@ -11,10 +12,21 @@ interface Props {
 
 export const Header: React.FC<Props> = ({className}) => {
   const [searchValue, setSearchValue] = useState<string>('');
+  const dispatch = useContextDispatch();
 
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   }
+
+  useEffect(() => {
+    if (!dispatch) return;
+
+    const timeoutId = setTimeout(() => {
+      dispatch({type: "SET_SEARCH", payload: searchValue});
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchValue]);
 
   return (
     <header className={cn(style.header, className)}>

@@ -5,7 +5,8 @@ export type CategoryT =
   'health' |
   'science' |
   'sports' |
-  'technology';
+  'technology' |
+  '';
 
 export type ArticlesT = {
   author: string | null;
@@ -40,6 +41,6 @@ export type StateT = {
 
 
 export type ActionT = {
-  type: 'setActiveCategory' | 'setIsLoading' | 'setError' | 'setData' | 'setSearch';
+  type: 'SET_ACTIVE_CATEGORY' | 'SET_IS_LOADING' | 'SET_ERROR' | 'SET_DATA' | 'SET_SEARCH';
   payload: CategoryT | DataT | ErrorT | IsLoadingT | SearchT | null;
 }

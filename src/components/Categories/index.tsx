@@ -16,7 +16,7 @@ export const Categories: React.FC<Props> = ({className}) => {
   const onClickButton =
     (category: CategoryT) => () => {
       if (dispatch === null) return;
-      dispatch({type: 'setActiveCategory', payload: category});
+      dispatch({type: 'SET_ACTIVE_CATEGORY', payload: category});
     }
 
   return (

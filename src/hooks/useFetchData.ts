@@ -10,33 +10,33 @@ export const useFetchData = () => {
   useEffect(() => {
     if (dispatch === null) return;
 
-    dispatch({type: 'setIsLoading', payload: true});
+    dispatch({type: 'SET_IS_LOADING', payload: true});
 
     const fetchUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${
       APIKey
     }&category=${
-      state.activeCategory}`;
+      state.activeCategory}&q=${state.search}`;
 
     try {
       (async () => {
         const res = await fetch(fetchUrl);
 
         if (!res.status) {
-          dispatch({type: "setError", payload: res.statusText});
+          dispatch({type: "SET_ERROR", payload: res.statusText});
         }
 
         const data = await res.json();
 
-        dispatch({type: "setData", payload: data});
+        dispatch({type: "SET_DATA", payload: data});
       })()
     } catch (error: unknown) {
       if (error instanceof Error) {
-        dispatch({type: "setError", payload: error.message});
+        dispatch({type: "SET_ERROR", payload: error.message});
       } else {
-        dispatch({type: "setError", payload: "Неизвестная ошибка"});
+        dispatch({type: "SET_ERROR", payload: "Неизвестная ошибка"});
       }
     } finally {
-      dispatch({type: "setIsLoading", payload: false});
+      dispatch({type: "SET_IS_LOADING", payload: false});
     }
   }, [state.activeCategory]);
 }
