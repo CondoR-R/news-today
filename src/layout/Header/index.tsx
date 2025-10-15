@@ -19,7 +19,11 @@ export const Header: React.FC<Props> = ({className}) => {
     <header className={cn('container', style.header, className)}>
 
       <h1 className={style.title}>
-        <Link to="/">News.today</Link>
+        <Link
+          to="/"
+          title={'Go to Home page'}
+          aria-label={'Go to Home page'}
+        >News.today</Link>
       </h1>
       <label
         htmlFor="search"

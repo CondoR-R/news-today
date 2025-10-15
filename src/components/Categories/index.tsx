@@ -2,16 +2,16 @@ import React from 'react';
 import cn from 'classnames';
 import style from './Categories.module.scss';
 import {categories} from "@/API/categories.ts";
-import type {CategoryT} from "@/type/home-state.type.ts";
-import {useHomeDispatch, useHomeState} from "@/hooks";
+import type {CategoryT} from "@/type/state.type.ts";
+import {useContextDispatch, useContextState} from "@/hooks";
 
 interface Props {
   className?: string;
 }
 
 export const Categories: React.FC<Props> = ({className}) => {
-  const {activeCategory} = useHomeState();
-  const dispatch = useHomeDispatch();
+  const {activeCategory} = useContextState();
+  const dispatch = useContextDispatch();
 
   const onClickButton =
     (category: CategoryT) => () => {

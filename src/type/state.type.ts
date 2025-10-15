@@ -1,5 +1,5 @@
 export type CategoryT =
-  'all' |
+  'top' |
   'business' |
   'entertainment' |
   'general' |
@@ -8,11 +8,16 @@ export type CategoryT =
   'sports' |
   'technology';
 
-export type HomeStateT = {
-  activeCategory: CategoryT;
+export type data = any;
+
+export type StateT = {
+  activeCategory: CategoryT,
+  isLoading: boolean,
+  news: (data | undefined),
+  error: null,
 };
 
-export type HomeActionT = {
+export type ActionT = {
   type: 'setActiveCategory';
   payload: CategoryT;
 }

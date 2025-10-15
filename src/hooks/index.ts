@@ -1,4 +1,3 @@
 export {useTitle} from './useTitle';
-export {useHomeDispatch} from './useHomeDispatch';
-export {useHomeState} from './useHomeState';
-export {useHomeReducer} from './useHomeReducer';
+export {useContextDispatch} from './useContextDispatch.ts';
+export {useContextState} from './useContextState.ts';

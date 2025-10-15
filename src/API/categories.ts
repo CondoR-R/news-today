@@ -1,7 +1,7 @@
-import type {CategoryT} from "@/type/home-state.type.ts";
+import type {CategoryT} from "@/type/state.type.ts";
 
 export const categories: CategoryT[] = [
-  'all',
+  'top',
   'business',
   'entertainment',
   'general',

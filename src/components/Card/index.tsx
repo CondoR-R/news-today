@@ -14,6 +14,8 @@ export const Card: React.FC<Props> = ({className}) => {
       <Link
         className={cn(style.link, className)}
         to={'/'}
+        title={'Read more'}
+        aria-label={'Read more'}
       >
         <img
           className={style.image}
@@ -37,7 +39,6 @@ export const Card: React.FC<Props> = ({className}) => {
             className={style.source}
             href={'https://www.nj.com/monmouth/2025/10/legendary-jersey-shore-nightclub-announces-closure-final-days-of-operation.html'}
             target="_blank"
-            onClick={() => console.log(1)}
           >
             nj.com
           </a>
