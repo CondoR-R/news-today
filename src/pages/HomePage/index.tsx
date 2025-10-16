@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardSkeleton} from '@/components';
+import {Card, CardSkeleton, Pagination} from '@/components';
 import {useContextState, useFetchData, useTitle} from "@/hooks";
 import style from "./HomePage.module.scss";
 
@@ -12,7 +12,6 @@ export const HomePage: React.FC = () => {
 
   return (
     <>
-
       <div className={style.cardBox}>
         {isLoading && emptyArr.map((_, i) => <CardSkeleton key={i} />)}
         {!isLoading && data && data?.articles && data.articles.map((article, i) => (
@@ -21,6 +20,7 @@ export const HomePage: React.FC = () => {
             card={article}
           />))}
       </div>
+      <Pagination />
     </>
   )
 }

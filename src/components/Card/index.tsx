@@ -11,10 +11,13 @@ interface Props {
 }
 
 export const Card: React.FC<Props> = ({className, card}) => {
-  if (!card.description && !card.content) return;
-
   const date = new Date(card.publishedAt);
   const renderDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
+  let description: string;
+  if (card?.description) description = cutText(card.description, 80);
+  else if (card?.content) description = cutText(card.content, 80);
+  else description = '';
 
   return (
     <div className={style.card}>
@@ -33,7 +36,7 @@ export const Card: React.FC<Props> = ({className, card}) => {
           loading="lazy"
         />
         <h2 className={style.title}>{cutText(card.title, 25)}</h2>
-        <p className={style.description}>{cutText(card?.description ? card.description : card.content, 80)}</p>
+        <p className={style.description}>{description}</p>
       </Link>
       <div className={style.bottom}>
         <div className={style.bottomLeft}>
@@ -46,7 +49,7 @@ export const Card: React.FC<Props> = ({className, card}) => {
             href={card.url}
             target="_blank"
           >
-            {card.source.name}
+            {cutText(card.source.name, 15)}
           </a>
         </div>
       </div>

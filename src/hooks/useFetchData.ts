@@ -15,7 +15,7 @@ export const useFetchData = () => {
     const fetchUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${
       APIKey
     }&category=${
-      state.activeCategory}&q=${state.search}`;
+      state.activeCategory}&q=${state.search}&pageSize=12&page=1`;
 
     try {
       (async () => {
@@ -26,6 +26,7 @@ export const useFetchData = () => {
         }
 
         const data = await res.json();
+        console.log(data);
 
         dispatch({type: "SET_DATA", payload: data});
       })()
