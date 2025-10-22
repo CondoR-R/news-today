@@ -31,16 +31,29 @@ export type IsLoadingT = boolean;
 
 export type SearchT = string;
 
+export type PageT = number;
+
 export type StateT = {
   activeCategory: CategoryT,
   isLoading: IsLoadingT,
   data: (DataT | undefined),
   error: ErrorT,
-  search: SearchT
+  search: SearchT,
+  page: number,
 };
 
+type setActiveCategory = { type: 'SET_ACTIVE_CATEGORY', payload: CategoryT };
+type setIsLoading = { type: 'SET_IS_LOADING', payload: boolean };
+type setError = { type: 'SET_ERROR', payload: ErrorT };
+type setData = { type: 'SET_DATA', payload: DataT };
+type setSearch = { type: 'SET_SEARCH', payload: SearchT };
+type setPage = { type: 'SET_PAGE', payload: PageT };
 
-export type ActionT = {
-  type: 'SET_ACTIVE_CATEGORY' | 'SET_IS_LOADING' | 'SET_ERROR' | 'SET_DATA' | 'SET_SEARCH';
-  payload: CategoryT | DataT | ErrorT | IsLoadingT | SearchT | null;
-}
+export type ActionT =
+  setActiveCategory
+  | setIsLoading
+  | setError
+  | setData
+  | setSearch
+  | setPage;
+

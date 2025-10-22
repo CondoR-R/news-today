@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import {useContextDispatch} from "@/hooks/useContextDispatch.ts";
 import {APIKey} from "@/API/api-key.ts";
 import {useContextState} from "@/hooks/useContextState.ts";
+import {pageSize} from "@/API/pageSize.ts";
 
 export const useFetchData = () => {
   const dispatch = useContextDispatch();
@@ -15,7 +16,7 @@ export const useFetchData = () => {
     const fetchUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${
       APIKey
     }&category=${
-      state.activeCategory}&q=${state.search}&pageSize=12&page=1`;
+      state.activeCategory}&q=${state.search}&pageSize=${pageSize}&page=1`;
 
     try {
       (async () => {
