@@ -17,6 +17,8 @@ export const reducer =
         return ({
           ...state,
           activeCategory: action.payload,
+          search: '',
+          page: 1,
         })
       }
       case 'SET_IS_LOADING': {
@@ -45,6 +47,7 @@ export const reducer =
             ...state,
             search: action.payload,
             activeCategory: 'general',
+            page: 1,
           }
         }
         return {
