@@ -9,16 +9,16 @@ export const useFetchData = () => {
   const state = useContextState();
 
   useEffect(() => {
-    if (dispatch === null) return;
-
-    dispatch({type: 'SET_IS_LOADING', payload: true});
-
+    if (!dispatch) return;
+    
     const fetchUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${
       APIKey
     }&category=${
-      state.activeCategory}&q=${state.search}&pageSize=${pageSize}&page=1`;
+      state.activeCategory}&q=${state.search}&pageSize=${pageSize}&page=${state.page}`;
 
     try {
+      dispatch({type: 'SET_IS_LOADING', payload: true});
+
       (async () => {
         const res = await fetch(fetchUrl);
 
@@ -27,7 +27,6 @@ export const useFetchData = () => {
         }
 
         const data = await res.json();
-        console.log(data);
 
         dispatch({type: "SET_DATA", payload: data});
       })()
@@ -40,7 +39,7 @@ export const useFetchData = () => {
     } finally {
       dispatch({type: "SET_IS_LOADING", payload: false});
     }
-  }, [state.activeCategory]);
+  }, [state.activeCategory, state.search, state.page]);
 }
 
 

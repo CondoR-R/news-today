@@ -10,6 +10,8 @@ export const HomePage: React.FC = () => {
   useTitle("Home");
   useFetchData();
 
+  console.log(isLoading);
+
   return (
     <>
       <div className={style.cardBox}>

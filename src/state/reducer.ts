@@ -22,7 +22,7 @@ export const reducer =
       case 'SET_IS_LOADING': {
         return ({
           ...state,
-          isLoading: action.payload,
+          isLoading: true,
         });
       }
       case 'SET_ERROR': {
@@ -35,6 +35,7 @@ export const reducer =
         return ({
           ...state,
           data: action.payload,
+          isLoading: false,
           error: null,
         });
       }

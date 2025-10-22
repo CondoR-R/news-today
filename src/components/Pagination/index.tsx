@@ -10,22 +10,33 @@ interface Props {
 
 export const Pagination: React.FC<Props> = ({className}) => {
   const {page, data} = useContextState();
-  const dipsatch = useContextDispatch();
+  const dispatch = useContextDispatch();
 
   if (data && data?.totalResults <= pageSize) return;
   const pagesArr = new Array(
     Math.ceil(data?.totalResults ? data?.totalResults / pageSize : 0)).fill(null);
 
-  const onClickLeftArrow = () => {
+  const onClickBack = () => {
+    if (page === 1 || !dispatch) return;
+    dispatch({type: 'SET_PAGE', payload: page - 1});
   }
 
+  const onClickForward = () => {
+    if (page === pagesArr.length || !dispatch) return;
+    dispatch({type: 'SET_PAGE', payload: page + 1});
+  }
+
+  const onClickPageNumber = (num: number) => () => {
+    if (!dispatch) return;
+    dispatch({type: 'SET_PAGE', payload: num});
+  }
 
   return (
     <div className={cn(style.wrapper, className)}>
       <button
         className={style.leftArrow}
         type="button"
-        onClick={onClickLeftArrow}
+        onClick={onClickBack}
       >
         Back
       </button>
@@ -34,22 +45,19 @@ export const Pagination: React.FC<Props> = ({className}) => {
           {pagesArr.map((_, index) => (
             <li key={index}>
               <button
-                className={style.pageButton}
+                className={cn(style.pageButton, {'active': index + 1 === page})}
                 type="button"
-                onClick={() => {
-                }}
+                onClick={onClickPageNumber(index + 1)}
               >
                 {index + 1}
               </button>
             </li>))}
         </ul>
-
       </div>
       <button
         className={style.rightArrow}
         type="button"
-        onClick={() => {
-        }}
+        onClick={onClickForward}
       >
         Forward
       </button>
