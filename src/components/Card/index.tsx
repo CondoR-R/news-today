@@ -23,7 +23,8 @@ export const Card: React.FC<Props> = ({className, card}) => {
     <div className={style.card}>
       <Link
         className={cn(style.link, className)}
-        to={'/'}
+        to={`/news/${card.title}`}
+        state={card}
         title={'Read more'}
         aria-label={'Read more'}
       >
