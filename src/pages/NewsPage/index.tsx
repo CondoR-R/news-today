@@ -18,6 +18,10 @@ export const NewsPage: React.FC<Props> = ({className}) => {
 
   return (
     <div className={cn(style.wrapper, className)}>
+      <div className={style.titleBox}>
+        <h2 className={style.title}>{card.title}</h2>
+        <p className={style.description}>{card.description}</p>
+      </div>
       <img
         className={style.image}
         width={1000}
@@ -26,12 +30,13 @@ export const NewsPage: React.FC<Props> = ({className}) => {
         alt={''}
         loading="lazy"
       />
-      <h2 className={style.title}>{card.title}</h2>
-      <p className={style.description}>{card.description}</p>
       <p className={style.content}>{card.content}</p>
       <div className={style.source}>
         <span>Source: </span>
-        <a href={card.url}>{card.source.name}</a>
+        <a
+          href={card.url}
+          target={'_blank'}
+        >{card.source.name}</a>
       </div>
     </div>
   )

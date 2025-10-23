@@ -1,3 +1,26 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
 
+.titleBox {
+  .title {
+    font-size: 36px;
+  }
+
+  .description {
+    color: var(--color-gray);
+    font-size: 14px;
+  }
+}
+
+.image {
+  border-radius: 20px;
+  width: 100%;
+  border: var(--border);
+}
+
+.content {
+  font-size: 18px;
 }

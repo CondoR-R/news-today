@@ -39,4 +39,8 @@
   .categories, .backLink {
     padding-top: var(--padding-y);
   }
+
+  .backLink {
+    text-decoration: underline;
+  }
 }
