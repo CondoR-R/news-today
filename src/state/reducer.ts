@@ -11,7 +11,7 @@ export const initialState: StateT = {
 };
 
 export const reducer =
-  (state: StateT, action: ActionT) => {
+  (state: StateT, action: ActionT): StateT => {
     switch (action.type) {
       case 'SET_ACTIVE_CATEGORY': {
         return ({

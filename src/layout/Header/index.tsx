@@ -1,35 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import cn from 'classnames';
 import style from './Header.module.scss';
 import {Link, useLocation} from "react-router";
-import {IoSearchSharp} from "react-icons/io5";
-import {Categories} from '@/components';
-import {useContextDispatch} from "@/hooks";
+import {Categories, Search} from '@/components';
 
 interface Props {
   className?: string;
 }
 
 export const Header: React.FC<Props> = ({className}) => {
-  const [searchValue, setSearchValue] = useState<string>('');
-  const dispatch = useContextDispatch();
-
   const pathname = useLocation().pathname;
   const isNewsPage = pathname.includes('/news');
-
-  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  }
-
-  useEffect(() => {
-    if (!dispatch) return;
-
-    const timeoutId = setTimeout(() => {
-      dispatch({type: "SET_SEARCH", payload: searchValue});
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
-  }, [searchValue]);
 
   return (
     <header className={cn(style.header, className)}>
@@ -42,20 +23,7 @@ export const Header: React.FC<Props> = ({className}) => {
               aria-label={'Go to Home page'}
             >News.today</Link>
           </h1>
-          {!isNewsPage && (
-            <label
-              htmlFor="search"
-              className={style.search}
-            >
-              <input
-                type="search"
-                id="search"
-                value={searchValue}
-                onChange={onChangeSearch}
-                placeholder="Поиск..."
-              />
-              <IoSearchSharp />
-            </label>)}
+          {!isNewsPage && (<Search />)}
         </div>
         {!isNewsPage && (<Categories className={style.categories} />)}
         {isNewsPage && (<Link

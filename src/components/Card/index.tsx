@@ -59,6 +59,3 @@ export const Card: React.FC<Props> = ({className, card}) => {
   )
 }
 
-// 80
-
-// 30
